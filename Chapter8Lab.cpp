@@ -147,6 +147,7 @@ int main()
 
         else if (choice == 7)
         {
+            cout << endl;
             cout << "Goodbye!" << endl;
         }
         
@@ -316,7 +317,7 @@ void printRoster(const char names[][31], const int scores[][NUM_TESTS], const do
     cout << left << setw(8) << "Test 2";
     cout << left << setw(8) << "Test 3";
     cout << left << setw(8) << "Test 4";
-    cout << left << setw(8) << "Average";
+    cout << right << setw(8) << "Average";
     cout << right << setw(8) << "Grade" << endl;
 
     cout << "-----------------------------------------------------------------------" << endl;
