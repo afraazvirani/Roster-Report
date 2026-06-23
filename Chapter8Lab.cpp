@@ -15,10 +15,6 @@ using namespace std;
 const int MAX_STUDENTS = 10;
 const int NUM_TESTS = 4;
 
-char names[MAX_STUDENTS][31];
-int scores[MAX_STUDENTS][NUM_TESTS];
-double averages[MAX_STUDENTS];
-char grades[MAX_STUDENTS];
 
 void readRoster(char names[][31], int scores[][NUM_TESTS], int& count);
 
@@ -34,6 +30,11 @@ void printStats(const double averages[], int count);
 
 int main()
 {
+    char names[MAX_STUDENTS][31];
+    int scores[MAX_STUDENTS][NUM_TESTS];
+    double averages[MAX_STUDENTS];
+    char grades[MAX_STUDENTS];
+
     int count = 0;
     int choice;
     char target[31];
@@ -55,6 +56,16 @@ int main()
         cout << "7. Quit" << endl;
         cout << "Enter choice: ";
         cin >> choice;
+
+        while (cin.fail() || choice < 1 || choice > 7)
+        {
+            cout << "Invalid choice. Please enter 1-7: ";
+
+            cin.clear();
+            cin.ignore(1000, '\n');
+
+            cin >> choice;
+        }
 
         if (choice == 1)
         {
@@ -150,11 +161,6 @@ int main()
             cout << endl;
             cout << "Goodbye!" << endl;
         }
-        
-        else
-        {
-            cout << "Invalid choice. Please enter 1-7." << endl;
-        }
 
     } while (choice != 7);
 
@@ -167,9 +173,13 @@ void readRoster(char names[][31], int scores[][NUM_TESTS], int& count)
     cout << "Enter number of students (1-10): ";
     cin >> count;
 
-    while (count < 1 || count > MAX_STUDENTS)
+    while (cin.fail() || count < 1 || count > MAX_STUDENTS)
     {
         cout << "Invalid number. Enter number of students (1-10): ";
+        
+        cin.clear();
+        cin.ignore(1000, '\n');
+
         cin >> count;
     }
 
@@ -186,9 +196,13 @@ void readRoster(char names[][31], int scores[][NUM_TESTS], int& count)
             cout << "Enter test score " << j + 1 << " for " << names[i] << ": ";
             cin >> scores[i][j];
 
-            while (scores[i][j] < 0 || scores[i][j] > 100)
+            while (cin.fail() || scores[i][j] < 0 || scores[i][j] > 100)
             {
                 cout << "Invalid score. Enter score from 0 to 100: ";
+                
+                cin.clear();
+                cin.ignore(1000, '\n');
+
                 cin >> scores[i][j];
             }
         }
